@@ -57,8 +57,6 @@ namespace OTUS_Homework_Class
 
         public void ViewList ()
         {
-            var sb = new StringBuilder();
-
             Console.WriteLine("Список строк:");
             Console.WriteLine(string.Join(",", StringList));
             Console.WriteLine($"Количество элементов в списке: {Size}, Финальный элемент: {Top}");
