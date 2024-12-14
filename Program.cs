@@ -37,13 +37,12 @@
 
         static void StackCommandHandler(ref Stack stack)
         {
-            
-
             Console.WriteLine();
             Console.WriteLine("Привет, я Иван Иваныч, чего тебе надобно?");
             Console.WriteLine("Чтобы добавить элемент в стек нажми 1");
             Console.WriteLine("Чтобы удолить элемент стека нажми 2");
             Console.WriteLine("Чтобы добавить реверс второго стека к первому нажми 3");
+            Console.WriteLine("Чтобы получить стек из реверсов N стеков нажми 4");
             Console.WriteLine("Чтобы выйти из программы нажмите Esc");
 
             var ComandKey = Console.ReadKey();
@@ -91,9 +90,35 @@
                     stack.Merge(stack, stack2);
 
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine($"Объединенный стэк: {string.Join(",", stack.StringList)}");
+                    Console.WriteLine($"Объединенный стэк:");
+                    stack.ViewList();
                     Console.ResetColor();
-                    return;
+                    break;
+                case ConsoleKey.D4:
+                    Console.WriteLine("Введите количество стеков, которое вы ходите объединить в один");
+                    bool IsInt = int.TryParse(Console.ReadLine(), out int StacksCount);
+
+                    while (!IsInt)
+                    {
+                        int.TryParse(Console.ReadLine(), out StacksCount);
+                    }
+
+                    if (StacksCount > 0) {
+                        Stack[] Stacks = new Stack[StacksCount];
+
+                        for (int i = 0; i < StacksCount; i++) {
+                            Stacks[0] = stack;
+                            if (i > 0) {
+                                Stacks[i] = InitStack();
+                            }
+                        }
+
+                        string ConcatReverseStack = string.Join(",", Stack.Concat(Stacks).StringList);
+
+                        Console.WriteLine("Конкатинированный реверснутый стек:");
+                        Console.WriteLine(ConcatReverseStack);
+                    }
+                    break;
             }
 
             Console.ResetColor();

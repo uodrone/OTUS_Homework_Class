@@ -16,6 +16,9 @@ namespace OTUS_Homework_Class
                 s1.StringList.Add(s2.StringList[i - 1]);
             }
 
+            s1.Size = s1.StringList.Count;
+            s1.Top = s1.StringList[s1.StringList.Count - 1];
+
             return s1;
         }
     }

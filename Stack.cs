@@ -9,8 +9,8 @@ namespace OTUS_Homework_Class
     public class Stack
     {
         public List<string> StringList = new List<string>();
-        public int Size { get; private set; }
-        public string? Top {  get; private set; }
+        public int Size { get; set; }
+        public string? Top {  get; set; }
 
         public Stack()
         {
@@ -28,7 +28,9 @@ namespace OTUS_Homework_Class
             }
 
             Size = Strings.Length;
+            Top = Strings[Strings.Length - 1];
         }
+
         /// <summary>
         /// Добавляем элемент в стек
         /// </summary>
@@ -59,7 +61,21 @@ namespace OTUS_Homework_Class
 
             Console.WriteLine("Список строк:");
             Console.WriteLine(string.Join(",", StringList));
-            Console.WriteLine($"Количество элементов в списке: {Size}");
+            Console.WriteLine($"Количество элементов в списке: {Size}, Финальный элемент: {Top}");
+        }
+        
+        public static Stack Concat(Stack[] StackArray)
+        {
+            Stack ReverseStack = new Stack();
+
+            foreach (Stack Stack in StackArray) {
+                for (int i = Stack.StringList.Count; i > 0; i--)
+                {
+                    ReverseStack.StringList.Add(Stack.StringList[i - 1]);
+                }
+            }
+
+            return ReverseStack;
         }
     }
 }
