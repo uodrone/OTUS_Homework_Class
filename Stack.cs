@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +9,14 @@ namespace OTUS_Homework_Class
 {
     public class Stack
     {
-        public List<string> StringList = new List<string>();
-        public int Size { get; set; }
-        public string? Top {  get; set; }
+        //предыдущий элемент связного списка, для первого элемента - равен нулю, для последующих - является ссылкой на предыдущий
+        StackItem _PrevElement;
+        public int _Size { get; set; }
+        public string? _Top { get; set; }
 
         public Stack()
         {
-            
+
         }
         /// <summary>
         /// Конструктор формирует список из массива строк, если они есть, а если нет - не формирует :)
@@ -22,13 +24,32 @@ namespace OTUS_Homework_Class
         /// <param name="Strings"></param>
         public Stack(string[] Strings)
         {
-            foreach (string String in Strings)
-            { 
-                StringList.Add(String);
+            for (int i = 0; i < Strings.Length; i++)
+            {
+                if (i > 0)
+                {
+                    StackItem Item = new StackItem(Strings[i], _PrevElement);
+                    _PrevElement = Item;
+                }
             }
 
-            Size = Strings.Length;
-            Top = Strings[Strings.Length - 1];
+            _Size = Strings.Length;
+            _Top = Strings[Strings.Length - 1];
+        }
+
+        /// <summary>
+        /// Класс для хранения стека на замену листу
+        /// </summary>
+        private class StackItem
+        {
+            public string? _ElementValue { get; set; }
+            public StackItem? _link { get; set; }
+
+            public StackItem(string? elementValue, StackItem link)
+            {
+                _ElementValue = elementValue;
+                _link = link;
+            }
         }
 
         /// <summary>
@@ -37,10 +58,12 @@ namespace OTUS_Homework_Class
         /// <param name="String"></param>
         public void Add(string String)
         {
-            StringList.Add(String);
-            Size++;
-            Top = String;
-            Console.WriteLine($"size = {Size}, Top = '{Top}'");
+            StackItem Item = new StackItem(String, _PrevElement);
+            _PrevElement = Item;
+
+            _Size++;
+            _Top = String;
+            Console.WriteLine($"size = {_Size}, Top = '{_Top}'");
         }
         /// <summary>
         /// Извлекаем последний элемент из стека, удаляем его и возвращаем его значение
@@ -48,34 +71,17 @@ namespace OTUS_Homework_Class
         /// <returns></returns>
         public string Pop()
         {
-            string String = StringList[StringList.Count - 1];
-            StringList.RemoveAt(StringList.Count - 1);
-            Size--;
-            Top = StringList.Last();
-            return String;
-        }
-
-        public void ViewList ()
-        {
-            var sb = new StringBuilder();
-
-            Console.WriteLine("Список строк:");
-            Console.WriteLine(string.Join(",", StringList));
-            Console.WriteLine($"Количество элементов в списке: {Size}, Финальный элемент: {Top}");
-        }
-        
-        public static Stack Concat(Stack[] StackArray)
-        {
-            Stack ReverseStack = new Stack();
-
-            foreach (Stack Stack in StackArray) {
-                for (int i = Stack.StringList.Count; i > 0; i--)
-                {
-                    ReverseStack.StringList.Add(Stack.StringList[i - 1]);
-                }
+            if (_PrevElement == null)
+            {
+                return null;
             }
 
-            return ReverseStack;
+            _Size--;
+            _Top = _PrevElement._ElementValue;
+
+            string? String = _PrevElement._ElementValue;
+            _PrevElement = _PrevElement._link;
+            return String;
         }
     }
 }
