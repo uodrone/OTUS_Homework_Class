@@ -5,9 +5,9 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OTUS_Homework_SolarSystem_1", "OTUS_Homework_SolarSystem_1.csproj", "{E4B4C3C0-A344-4233-B46B-0AADEBA08EB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTUS_Homework_SolarSystem_2", "..\OTUS_Homework_SolarSystem_2\OTUS_Homework_SolarSystem_2.csproj", "{2C59A9CA-606A-49EA-99E8-A8572E08A6A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OTUS_Homework_SolarSystem_2", "..\OTUS_Homework_SolarSystem_2\OTUS_Homework_SolarSystem_2.csproj", "{2C59A9CA-606A-49EA-99E8-A8572E08A6A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTUS_Homework_SolarSystem_3", "..\OTUS_Homework_SolarSystem_3\OTUS_Homework_SolarSystem_3.csproj", "{4B3E8D81-1430-4E4A-A056-602460B92EC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OTUS_Homework_SolarSystem_3", "..\OTUS_Homework_SolarSystem_3\OTUS_Homework_SolarSystem_3.csproj", "{4B3E8D81-1430-4E4A-A056-602460B92EC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

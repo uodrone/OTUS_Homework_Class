@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OTUS_Homework_SolarSystem_2\OTUS_Homework_SolarSystem_2.csproj" />
+    <ProjectReference Include="..\OTUS_Homework_SolarSystem_3\OTUS_Homework_SolarSystem_3.csproj" />
+  </ItemGroup>
+
 </Project>
